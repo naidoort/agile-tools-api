@@ -28,8 +28,8 @@ public class TeamMember {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Email(message = "Valid email is required")
-    @Column(unique = true, nullable = false)
+    @Email(message = "Email must be valid if provided")
+    @Column(unique = true, nullable = true)
     private String email;
 
     @Column(name = "jurisdiction")

@@ -23,7 +23,7 @@ public class TeamMemberDto {
     @NotBlank(message = "Last name is required")
     private String lastName;
 
-    @Email(message = "Valid email is required")
+    @Email(message = "Email must be valid if provided")
     private String email;
 
     private String jurisdiction;

@@ -2,9 +2,15 @@ package com.agiletools.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "leaves")
 public class Leave {
@@ -37,6 +43,13 @@ public class Leave {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    public Leave(LocalDate startDate, LocalDate endDate, LeaveType leaveType, String description) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.leaveType = leaveType;
+        this.description = description;
+    }
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
@@ -46,79 +59,6 @@ public class Leave {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
-    }
-
-    public Leave() {}
-
-    public Leave(LocalDate startDate, LocalDate endDate, LeaveType leaveType, String description) {
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.leaveType = leaveType;
-        this.description = description;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public LeaveType getLeaveType() {
-        return leaveType;
-    }
-
-    public void setLeaveType(LeaveType leaveType) {
-        this.leaveType = leaveType;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public TeamMember getTeamMember() {
-        return teamMember;
-    }
-
-    public void setTeamMember(TeamMember teamMember) {
-        this.teamMember = teamMember;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public enum LeaveType {
